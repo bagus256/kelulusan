@@ -4,388 +4,71 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pengumuman Kelulusan SMAN 52 Jakarta</title>
+  <title>Pengumuman Kelulusan - SMAN 52 Jakarta</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-    .container {
-      background-color: #ffffff;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
       text-align: center;
-      width: 100%;
-      max-width: 400px;
+      padding: 2rem;
     }
-    h1 {
-      margin-bottom: 1.5rem;
-      font-size: 1.5rem;
-      color: #333;
-    }
-    input[type="text"] {
-      width: 100%;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+    input {
+      padding: 0.5rem;
       font-size: 1rem;
     }
     button {
-      width: 100%;
-      padding: 0.75rem;
-      background-color: #007BFF;
-      color: white;
-      border: none;
-      border-radius: 4px;
+      padding: 0.5rem 1rem;
       font-size: 1rem;
-      cursor: pointer;
     }
-    button:hover {
-      background-color: #0056b3;
-    }
-    .result {
-      margin-top: 1rem;
+    #hasil {
+      margin-top: 1.5rem;
       font-weight: bold;
     }
   </style>
+  <script>
+    const releaseTime = new Date("2025-05-05T10:00:00+07:00");
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const now = new Date();
+      const pengumumanEl = document.getElementById('pengumuman');
+      const formEl = document.getElementById('form-kelulusan');
+
+      if (now < releaseTime) {
+        formEl.style.display = 'none';
+        pengumumanEl.innerHTML = `
+          <div style="text-align:center; font-weight: bold; font-size: 1.2rem; padding: 2rem; color: red;">
+            Pengumuman kelulusan akan tersedia pada<br>
+            <strong>5 Mei 2025 pukul 10.00 WIB</strong>
+          </div>
+        `;
+      }
+    });
+  </script>
 </head>
 <body>
-  <div class="container">
-    <img src="logo.jpg" alt="Logo SMAN 52 Jakarta" style="max-width: 120px; margin-bottom: 1rem;">
-    <h1>Pengumuman Kelulusan<br>SMAN 52 Jakarta</h1>
-    <input type="text" id="nisn" placeholder="Masukkan NISN Anda" />
-    <button onclick="cekKelulusan()">Cek Kelulusan</button>
-    <div class="result" id="hasil"></div>
-  </div>
-
+  <img src="logo.jpg" alt="Logo SMAN 52 Jakarta" style="max-width: 120px; margin-bottom: 1rem;">
+  <h1>Pengumuman Kelulusan<br>SMAN 52 Jakarta</h1>
+  <div id="pengumuman"></div>
+  <form id="form-kelulusan" onsubmit="cekKelulusan(event)">
+    <input type="text" id="nisn" placeholder="Masukkan NISN" required />
+    <button type="submit">Cek Kelulusan</button>
+  </form>
+  <div id="hasil"></div>
   <script>
-    function cekKelulusan() {
-      const nisn = document.getElementById("nisn").value.trim();
-      const hasil = document.getElementById("hasil");
+    const dataKelulusan = {
+      "1234567890": { nama: "Andi Setiawan", status: "LULUS" },
+      "0987654321": { nama: "Siti Aminah", status: "LULUS" }
+    };
 
-      const dataKelulusan = {
-  "0051308067": { nama: "Abdul Jabarudin", status: "LULUS" },
-  "0061492438": { nama: "Achmad Aryan Fauzi", status: "LULUS" },
-  "0058026397": { nama: "Aditya Putra Darmawan", status: "LULUS" },
-  "0072138414": { nama: "Agunk Pratama", status: "LULUS" },
-  "0053500926": { nama: "Aisyah Dwiyanti", status: "LULUS" },
-  "0061971065": { nama: "Alfat Nuruddin", status: "LULUS" },
-  "0059361448": { nama: "Alliyah Rahma", status: "LULUS" },
-  "0065601646": { nama: "Ananda Reza Ferdiansyah", status: "LULUS" },
-  "0061664244": { nama: "Andi Muhammad Pahlevi Rusdi Galigo", status: "LULUS" },
-  "0065914815": { nama: "Cyntia Salsa Bila Sudomo", status: "LULUS" },
-  "0073010714": { nama: "Doni Surya Saputra", status: "LULUS" },
-  "0047098226": { nama: "Eka Des Pratama", status: "LULUS" },
-  "0045336410": { nama: "Eky Des Priyatna", status: "LULUS" },
-  "0077875012": { nama: "Erika Alfitriyeni", status: "LULUS" },
-  "0075315903": { nama: "Fadhil Adha", status: "LULUS" },
-  "0065044492": { nama: "Fitria Nur Haryati", status: "LULUS" },
-  "0068168161": { nama: "Gusti Bagus Cahyo", status: "LULUS" },
-  "0067543058": { nama: "Harry Agustian", status: "LULUS" },
-  "0044284687": { nama: "Hendry Adhipratama", status: "LULUS" },
-  "0068885682": { nama: "Keysa Varisha Naroni", status: "LULUS" },
-  "0079347132": { nama: "Lutfiana Khumairoh", status: "LULUS" },
-  "0076456389": { nama: "Muhamad Rizal Tabrani", status: "LULUS" },
-  "0051240439": { nama: "Muhammad Ilham Maulana", status: "LULUS" },
-  "3071452049": { nama: "Nazwa Olivia Kamin Putri", status: "LULUS" },
-  "3073141950": { nama: "Putra Inada", status: "LULUS" },
-  "0073318354": { nama: "Reyfan Amirul Iswandi", status: "LULUS" },
-  "0057452102": { nama: "Rosma Wita", status: "LULUS" },
-  "0065780714": { nama: "Sackia Widya Fasah", status: "LULUS" },
-  "0066713121": { nama: "Sapran Batubara", status: "LULUS" },
-  "0064583165": { nama: "Satria Ramadhani", status: "LULUS" },
-  "0066676365": { nama: "Sefirah", status: "LULUS" },
-  "0066429445": { nama: "Zagar Faizaan Parsa", status: "LULUS" },
-  "0059500821": { nama: "Zilal Ainil Hakim", status: "LULUS" },
-  "3058633597": { nama: "Zuhniyanto Yasser Prakoso", status: "LULUS" },
-  "0058387804": { nama: "Zulfikar", status: "LULUS" },
-  "NISN": { nama: "Nama Peserta Didik", status: "LULUS" },
-  "0053394099": { nama: "Aditya Saputra", status: "LULUS" },
-  "0068057859": { nama: "Alyani Nur Shadrina", status: "LULUS" },
-  "0069867803": { nama: "Andi Destiana", status: "LULUS" },
-  "3054931053": { nama: "Annisa Shabarini", status: "LULUS" },
-  "0063676264": { nama: "Ayyi Fatiha", status: "LULUS" },
-  "0063224548": { nama: "Cherry Mariana Tampubolon", status: "LULUS" },
-  "0065557990": { nama: "Cindy Agustina Wijaya", status: "LULUS" },
-  "0074118365": { nama: "Dea Syiffa", status: "LULUS" },
-  "0063390429": { nama: "Dhiya Setianingsih", status: "LULUS" },
-  "0066359383": { nama: "Eka Setiya Wati", status: "LULUS" },
-  "0068522628": { nama: "Fuad Zakki", status: "LULUS" },
-  "0062633015": { nama: "Hanifah Qurrotu'Ain", status: "LULUS" },
-  "0083386303": { nama: "Heyla Bilqis", status: "LULUS" },
-  "3062893442": { nama: "Ikhsan Paturahman", status: "LULUS" },
-  "0055324120": { nama: "Ine Kusherawati", status: "LULUS" },
-  "0067871108": { nama: "Kalin Nadya Shafwah Bentomi", status: "LULUS" },
-  "0065848844": { nama: "Kayla Thahira", status: "LULUS" },
-  "0075894305": { nama: "Kholifatus Zahra Habibah", status: "LULUS" },
-  "0072946434": { nama: "Marda Tillah Vina Fatihah", status: "LULUS" },
-  "0059206713": { nama: "Mohammad Taufiq Hidayatulloh", status: "LULUS" },
-  "0066917324": { nama: "Muhammad Fatihuddin Assaoli", status: "LULUS" },
-  "0078992820": { nama: "Muhammad Nabeel Adistra", status: "LULUS" },
-  "0052699051": { nama: "Muhammad Rizki Fatoni", status: "LULUS" },
-  "0012195656": { nama: "Nazwa Bunga Evandra", status: "LULUS" },
-  "0074885335": { nama: "Ni Komang Tri Puspa Febriani Putri", status: "LULUS" },
-  "0058199769": { nama: "Nika Firqoh Najilah", status: "LULUS" },
-  "0063813806": { nama: "Novelina Sitanggang", status: "LULUS" },
-  "0069899894": { nama: "Nur Azizah Rahmawati", status: "LULUS" },
-  "0062656194": { nama: "Pinkkan Savana", status: "LULUS" },
-  "0069842037": { nama: "Putri Nia Rahmadhani", status: "LULUS" },
-  "0064190334": { nama: "Rana Ramadhan", status: "LULUS" },
-  "0058108837": { nama: "Ridho Adi Friansyah", status: "LULUS" },
-  "0055415243": { nama: "Ryan Wilhamdi Keliat", status: "LULUS" },
-  "0058418354": { nama: "Safira Aulia Rahmah", status: "LULUS" },
-  "0076063236": { nama: "Sahdad Abbil Zulyahman", status: "LULUS" },
-  "0051425613": { nama: "Zacky Kurniawan Hidayat", status: "LULUS" },
-  "NISN": { nama: "Nama Peserta Didik", status: "LULUS" },
-  "0066685235": { nama: "Abdul Qodir Irfa", status: "LULUS" },
-  "3051321742": { nama: "Abdullah Azam Alfath", status: "LULUS" },
-  "0063835494": { nama: "Anggi Geraldo", status: "LULUS" },
-  "0072340784": { nama: "Anisah Safira", status: "LULUS" },
-  "0061005258": { nama: "Aqilah Nurfadhilah", status: "LULUS" },
-  "0061165292": { nama: "Aulia Ramadhani", status: "LULUS" },
-  "0066692407": { nama: "Aulicia Audiatama", status: "LULUS" },
-  "0075851185": { nama: "Caithlyn Alexandra Lim", status: "LULUS" },
-  "0068084394": { nama: "Chico Erendra", status: "LULUS" },
-  "0074328126": { nama: "Christian Pardomuan Simanjuntak", status: "LULUS" },
-  "3079305690": { nama: "Delia Keysia Putri Sadila", status: "LULUS" },
-  "0071689787": { nama: "Devina Rohimatun Nisa", status: "LULUS" },
-  "0067654314": { nama: "Eldy Yohana", status: "LULUS" },
-  "0078614360": { nama: "Elsada Kristin Paustin", status: "LULUS" },
-  "0064659171": { nama: "Friska Maria Robintang", status: "LULUS" },
-  "0077017516": { nama: "Gabriel Christian H Nababan", status: "LULUS" },
-  "0071778041": { nama: "Jhene Manuella", status: "LULUS" },
-  "0072315508": { nama: "Keysha Alifiah", status: "LULUS" },
-  "3053846736": { nama: "Leni Wahyuni", status: "LULUS" },
-  "0079792556": { nama: "Luthfiah Qurratu Aini", status: "LULUS" },
-  "0062183917": { nama: "Maya Riansa", status: "LULUS" },
-  "0066483094": { nama: "Muhammad Adam Yanuar", status: "LULUS" },
-  "0069716881": { nama: "Muhammad Dzakwan Faa'Iz", status: "LULUS" },
-  "0073580343": { nama: "Muhammad Reza Gilang Prakoso", status: "LULUS" },
-  "0066355128": { nama: "Mulla Shadra", status: "LULUS" },
-  "0055546403": { nama: "Nabila Oktaviani", status: "LULUS" },
-  "0062804939": { nama: "Nayla Agdi Azzahra", status: "LULUS" },
-  "0061594708": { nama: "Nazwa Yuliani Rizqia", status: "LULUS" },
-  "0079607684": { nama: "Raden Hafizh Bagus Nur Alief", status: "LULUS" },
-  "0044931213": { nama: "Rahmad", status: "LULUS" },
-  "0076207689": { nama: "Rifki Pratama Sidik", status: "LULUS" },
-  "0067549453": { nama: "Rosita Handayani", status: "LULUS" },
-  "0053441634": { nama: "Sopi Yatul Pratiwi", status: "LULUS" },
-  "0068454006": { nama: "Syifa Citra Setiawan", status: "LULUS" },
-  "0059308807": { nama: "Vanatasya Delianti", status: "LULUS" },
-  "0061533363": { nama: "Yusuf Dwi Sadewo", status: "LULUS" },
-  "NISN": { nama: "Nama Peserta Didik", status: "LULUS" },
-  "0051922433": { nama: "Abdi Maulana Azril", status: "LULUS" },
-  "0077120964": { nama: "Adinda Nadiyah Khairunnisa", status: "LULUS" },
-  "0068057591": { nama: "Ahmad Rajibful Anam", status: "LULUS" },
-  "0065753742": { nama: "Al Fiki Dwi Saputra", status: "LULUS" },
-  "0074399696": { nama: "Alfiani Nur Annisa", status: "LULUS" },
-  "0065677777": { nama: "Andien Damaryanti", status: "LULUS" },
-  "0075446798": { nama: "Aprizal Aditia Komo Wullah", status: "LULUS" },
-  "0075034963": { nama: "Bilqis Lisda Ramadhani", status: "LULUS" },
-  "0077401015": { nama: "Darius Maykel Palonda", status: "LULUS" },
-  "0039129582": { nama: "Ega Ramadhani", status: "LULUS" },
-  "0075739137": { nama: "Elsa Rahmani", status: "LULUS" },
-  "0051694549": { nama: "Emi Sugiandayani", status: "LULUS" },
-  "0061051449": { nama: "Fajar Mulia Saputra", status: "LULUS" },
-  "0071307325": { nama: "Febi Rahma Nayla", status: "LULUS" },
-  "0065498271": { nama: "Ferry Angriano", status: "LULUS" },
-  "0078771841": { nama: "Franz Rudolf Christopher Hutahaean", status: "LULUS" },
-  "0065363576": { nama: "Haikal Razqy Dwika Prastowo", status: "LULUS" },
-  "0057385472": { nama: "Isra Mulyana", status: "LULUS" },
-  "0078810679": { nama: "Jihan Rafalia Putri Matulessy", status: "LULUS" },
-  "0078199473": { nama: "Joanna Celine Abigael", status: "LULUS" },
-  "0062431594": { nama: "Khaerul Umam", status: "LULUS" },
-  "0077411641": { nama: "Meilany Cahya Purnama", status: "LULUS" },
-  "0057806594": { nama: "Muhammad Amzah Al Satria", status: "LULUS" },
-  "0063300755": { nama: "Muhammad Pahmi Abati", status: "LULUS" },
-  "0076703490": { nama: "Mulia Daniel Sianturi", status: "LULUS" },
-  "0064152106": { nama: "Olivia Azahra", status: "LULUS" },
-  "0074122007": { nama: "Qanita Fatwa", status: "LULUS" },
-  "0051487307": { nama: "Rendi Alexander", status: "LULUS" },
-  "0072912003": { nama: "Reno Rafid Athallah", status: "LULUS" },
-  "0051402643": { nama: "Sabrina Septiyani", status: "LULUS" },
-  "0059817038": { nama: "Sari Wulan Agustin", status: "LULUS" },
-  "0072350202": { nama: "Shania Feliyanda Putri", status: "LULUS" },
-  "0064741015": { nama: "Sri Hapsari Nurul Ramadhani", status: "LULUS" },
-  "0063143648": { nama: "Wisya Muthi Aryanti", status: "LULUS" },
-  "0052635724": { nama: "Yan Istiyawan", status: "LULUS" },
-  "0078654349": { nama: "Zathasa Elfa Riyani", status: "LULUS" },
-  "NISN": { nama: "Nama Peserta Didik", status: "LULUS" },
-  "0072603778": { nama: "Achmad Agung Willarso", status: "LULUS" },
-  "0065030634": { nama: "Ajie Wahyu Utomo", status: "LULUS" },
-  "0072379811": { nama: "Alya Deviareza", status: "LULUS" },
-  "0074482512": { nama: "Arvia Dwi Cahyarani", status: "LULUS" },
-  "0066293565": { nama: "Bening Tilu Adiningrahayu", status: "LULUS" },
-  "3065693901": { nama: "Chavin Tino Hutabarat", status: "LULUS" },
-  "0066657208": { nama: "Claudia Intan Nuraini", status: "LULUS" },
-  "0078139328": { nama: "David Ananda Putra", status: "LULUS" },
-  "0068262066": { nama: "Evelyn Natania Bunga", status: "LULUS" },
-  "0064778530": { nama: "Fachri Wibisono", status: "LULUS" },
-  "0089133257": { nama: "Fikriyah Choerunnisa", status: "LULUS" },
-  "0078094314": { nama: "Firda Aini Fitroh", status: "LULUS" },
-  "0074142894": { nama: "Genta Ajie Permana", status: "LULUS" },
-  "3063769636": { nama: "Hasanah Zainal Asyiah", status: "LULUS" },
-  "0066729369": { nama: "Imam Nur Hakim", status: "LULUS" },
-  "0069137869": { nama: "Indah Willa Amanda Taqwa", status: "LULUS" },
-  "0078941606": { nama: "Intan Nur Ramadhani", status: "LULUS" },
-  "0078274562": { nama: "Keisha Adya Natasya", status: "LULUS" },
-  "0076742304": { nama: "Maulydhia Pratiwi", status: "LULUS" },
-  "0075420782": { nama: "Mochammad Daffa Reifan", status: "LULUS" },
-  "0064889226": { nama: "Muhamad Virky Epriza", status: "LULUS" },
-  "0069361750": { nama: "Muhammad Arya Faudzi Hakim", status: "LULUS" },
-  "0072435139": { nama: "Muhammad Radithya Rasyid", status: "LULUS" },
-  "0079292799": { nama: "Nayla Zahara", status: "LULUS" },
-  "0072057544": { nama: "Nomi Grecia Br.Ginting", status: "LULUS" },
-  "3074577369": { nama: "R E N A T A", status: "LULUS" },
-  "0071534842": { nama: "Renita", status: "LULUS" },
-  "0057046969": { nama: "Resky Imam Syahputra", status: "LULUS" },
-  "0065675342": { nama: "Sahara Ravi Ani", status: "LULUS" },
-  "0079164425": { nama: "Samuel Yosua Sahat Lourentinus", status: "LULUS" },
-  "0067546498": { nama: "Sandy Bagus Putranto", status: "LULUS" },
-  "0076301285": { nama: "Shandy Chandra Sugiana", status: "LULUS" },
-  "0072656768": { nama: "Shanice Audrey Bethania", status: "LULUS" },
-  "0064539956": { nama: "Syifa Nabila", status: "LULUS" },
-  "0078442451": { nama: "Theophilius Ezra Paido Parhusip", status: "LULUS" },
-  "0075274752": { nama: "Viera Rachmaniar Chan", status: "LULUS" },
-  "NISN": { nama: "Nama Peserta Didik", status: "LULUS" },
-  "0062592454": { nama: "Abdullah Abdul Aziz", status: "LULUS" },
-  "0064305912": { nama: "Aldinda Anastasya Megatadu", status: "LULUS" },
-  "0069734661": { nama: "Anggelika Eveline", status: "LULUS" },
-  "0059451572": { nama: "Ardiyansyah", status: "LULUS" },
-  "0072208054": { nama: "Ariefah Azzahra", status: "LULUS" },
-  "0065204293": { nama: "Bayu Putra Pratama", status: "LULUS" },
-  "0078833514": { nama: "Christian Adam Sagala", status: "LULUS" },
-  "0068685389": { nama: "Dewi Rohmah Sulistya", status: "LULUS" },
-  "0074198450": { nama: "Dika Fajari Prasetya", status: "LULUS" },
-  "0063517318": { nama: "Dion Prayoga", status: "LULUS" },
-  "0074676121": { nama: "Ecy Aprilia", status: "LULUS" },
-  "0077631981": { nama: "Gerald Chandra Aprilinno", status: "LULUS" },
-  "0048441079": { nama: "Irfan Ramadhan", status: "LULUS" },
-  "0074692086": { nama: "Khalluna Az Zahra", status: "LULUS" },
-  "0066926439": { nama: "Kristian Karimang", status: "LULUS" },
-  "0077023536": { nama: "Magdalena Fransiska", status: "LULUS" },
-  "0077728067": { nama: "Marlon Rafadhytia Sepang", status: "LULUS" },
-  "0062531150": { nama: "Maulana Firdaus", status: "LULUS" },
-  "0053359943": { nama: "Miftahul Jannah", status: "LULUS" },
-  "0064147011": { nama: "Muhamad Ramdani", status: "LULUS" },
-  "0056146428": { nama: "Muhammad Ade Surahman", status: "LULUS" },
-  "0062241446": { nama: "Nadin Nazwa Aulia", status: "LULUS" },
-  "0072022692": { nama: "Nurul Octaviani", status: "LULUS" },
-  "0075903859": { nama: "Putra Rafif Arkana", status: "LULUS" },
-  "0079687961": { nama: "Raditiya Firmansyah", status: "LULUS" },
-  "0062868399": { nama: "Rahmadina Amiarti", status: "LULUS" },
-  "0059687624": { nama: "Retno Ayu Septiani", status: "LULUS" },
-  "0068124769": { nama: "Rita Cahyani", status: "LULUS" },
-  "0051898516": { nama: "Rizky Suryadi", status: "LULUS" },
-  "0074975239": { nama: "Sandrini Loumado", status: "LULUS" },
-  "0074507018": { nama: "Servitia Prahasiwi", status: "LULUS" },
-  "0079989097": { nama: "Shamil Ali Gibran", status: "LULUS" },
-  "0066555147": { nama: "Tri Andita Suci Maharani", status: "LULUS" },
-  "0079859931": { nama: "Tsabitah Hanifah Widya", status: "LULUS" },
-  "3046359767": { nama: "Zhasa Saputri", status: "LULUS" },
-  "NISN": { nama: "Nama Peserta Didik", status: "LULUS" },
-  "0052765772": { nama: "Ahmad Dani", status: "LULUS" },
-  "0072519353": { nama: "Alifah Rizkiani", status: "LULUS" },
-  "0069233839": { nama: "Alisyah Azmi", status: "LULUS" },
-  "0078336079": { nama: "Alya Nuraini", status: "LULUS" },
-  "0066802907": { nama: "Ardiansyah Ramadhan", status: "LULUS" },
-  "0063922410": { nama: "Aufa Hasna Najjah Raharjo", status: "LULUS" },
-  "0065971128": { nama: "Bima Indra Wijaya", status: "LULUS" },
-  "0075999819": { nama: "Christian Kevin Namora Saragi", status: "LULUS" },
-  "0065412057": { nama: "Dadit Setiawan. R", status: "LULUS" },
-  "0064199974": { nama: "Desy Evadwiyanti", status: "LULUS" },
-  "0036102011": { nama: "Farid Hidayat", status: "LULUS" },
-  "0074142744": { nama: "Ferosyara Zetta Attaillah", status: "LULUS" },
-  "0062873311": { nama: "Jevon Andrew Simaela", status: "LULUS" },
-  "0087579505": { nama: "Justin Frederick Manurung", status: "LULUS" },
-  "0054201642": { nama: "Kartika", status: "LULUS" },
-  "0052838361": { nama: "Luisa Safira", status: "LULUS" },
-  "0073897376": { nama: "Luthfia Aristy", status: "LULUS" },
-  "0054684475": { nama: "Luthfia Istiqomah", status: "LULUS" },
-  "0076527759": { nama: "Marcelino Megawan", status: "LULUS" },
-  "0076651939": { nama: "Muhamad Jeasen Rizqi Alfian", status: "LULUS" },
-  "0033603332": { nama: "Muhammad Rafly", status: "LULUS" },
-  "0069924367": { nama: "Muhammad Rizky", status: "LULUS" },
-  "0075025510": { nama: "Najwa Syarifah", status: "LULUS" },
-  "0055737079": { nama: "Natalia Nabila", status: "LULUS" },
-  "0076513044": { nama: "Putra Aditya", status: "LULUS" },
-  "0044916633": { nama: "Raehan Dora", status: "LULUS" },
-  "0059148782": { nama: "Raudhatul Adawiyah", status: "LULUS" },
-  "0058104232": { nama: "Ridho", status: "LULUS" },
-  "0069253356": { nama: "Rizky Ramadhani Putra", status: "LULUS" },
-  "0073344418": { nama: "Ropikoh Hayatin Nufus", status: "LULUS" },
-  "0066487998": { nama: "Sahrul Septiadi", status: "LULUS" },
-  "0065890129": { nama: "Septinus Stankovikc Thomas", status: "LULUS" },
-  "0069722121": { nama: "Siti Hartini", status: "LULUS" },
-  "0075706460": { nama: "Siti Nabilah Mahfudzoh", status: "LULUS" },
-  "0076368081": { nama: "Tasya Nurjanah", status: "LULUS" },
-  "0071900864": { nama: "Virgin Mauren Warouw", status: "LULUS" },
-  "NISN": { nama: "Nama Peserta Didik", status: "LULUS" },
-  "0064663819": { nama: "Adrian Risky Sondakh", status: "LULUS" },
-  "0065577398": { nama: "Airin Rihhadatul 'Aisyah", status: "LULUS" },
-  "0065385177": { nama: "Aisyah Raihana Zhafirah", status: "LULUS" },
-  "0076765615": { nama: "Aliyyah Az-Zahra", status: "LULUS" },
-  "0075405054": { nama: "Alkilla Syifa Ma'Ruf", status: "LULUS" },
-  "0061256172": { nama: "Alya Fitriah", status: "LULUS" },
-  "0066865634": { nama: "Amanda Putri", status: "LULUS" },
-  "0075486309": { nama: "Anasthasia Isabel Puteri Sianipar", status: "LULUS" },
-  "0069489438": { nama: "Aprilita Tri Cahya Suhada", status: "LULUS" },
-  "0073586020": { nama: "Arisma Yanti", status: "LULUS" },
-  "0061151009": { nama: "Dea Adila", status: "LULUS" },
-  "0071549754": { nama: "Denzel Immanuel Marpaung", status: "LULUS" },
-  "0066265393": { nama: "Gazelle Putri Destama", status: "LULUS" },
-  "0065322167": { nama: "Gede Panji Dana Putra Ricedes", status: "LULUS" },
-  "0071168870": { nama: "Gentur Banyu", status: "LULUS" },
-  "0066566675": { nama: "Grace Angelina", status: "LULUS" },
-  "0076508164": { nama: "Grace Marthauly Simatupang", status: "LULUS" },
-  "0077070625": { nama: "Helen Dwi Anggia", status: "LULUS" },
-  "0069993058": { nama: "Iklimah Ratu Yusel", status: "LULUS" },
-  "0063725613": { nama: "Ismi Isnaeni Laksono", status: "LULUS" },
-  "0068388271": { nama: "Mei Dinasari", status: "LULUS" },
-  "0076086758": { nama: "Melati Putri Amelia", status: "LULUS" },
-  "0061038859": { nama: "Mochammad Faiz Muzacky", status: "LULUS" },
-  "0077381126": { nama: "Muhamad Imam Rozzan", status: "LULUS" },
-  "0075410660": { nama: "Nadya Hillyatul Narva Auliya", status: "LULUS" },
-  "0063817104": { nama: "Nanda Putri Zabrina", status: "LULUS" },
-  "0148682865": { nama: "Naswa Nabilah Juliarti", status: "LULUS" },
-  "0072679551": { nama: "Nasywa Haura Fatiha", status: "LULUS" },
-  "0062318766": { nama: "Naufal Saputra Riyadi", status: "LULUS" },
-  "0082457363": { nama: "Nayla Azzura Putri", status: "LULUS" },
-  "0138666348": { nama: "Nazhala Putri Salsabila", status: "LULUS" },
-  "0066834866": { nama: "Rizka Nurshafa Aulia", status: "LULUS" },
-  "0078905524": { nama: "Sahala Septiano Vincencyus Caesar Manullang", status: "LULUS" },
-  "0072642384": { nama: "Satria Alam Samudra Alfatiha", status: "LULUS" },
-  "0073817503": { nama: "Ventanalius Chruzerio Imanuel", status: "LULUS" },
-  "0064462791": { nama: "Zahirah Ayu Syafiqah", status: "LULUS" }
-};
+    function cekKelulusan(event) {
+      event.preventDefault();
+      const nisn = document.getElementById('nisn').value.trim();
+      const hasil = document.getElementById('hasil');
 
-      if (nisn === "") {
-        hasil.style.color = "red";
-        hasil.innerText = "NISN tidak boleh kosong.";
-        return;
-      }
-
-      const data = dataKelulusan[nisn];
-      if (data) {
-        if (data.status === "LULUS") {
-          hasil.style.color = "green";
-          hasil.innerHTML = `<p>Selamat <strong>${data.nama}</strong>!</p><p>Anda dinyatakan <strong>${data.status}</strong>.</p>`;
-        } else {
-          hasil.style.color = "red";
-          hasil.innerHTML = `<p>Mohon maaf <strong>${data.nama}</strong>,</p><p>Anda dinyatakan <strong>${data.status}</strong>.</p>`;
-        }
+      if (dataKelulusan[nisn]) {
+        hasil.innerHTML = `NAMA: <strong>${dataKelulusan[nisn].nama}</strong><br>
+                           STATUS: <strong style="color: green;">${dataKelulusan[nisn].status}</strong>`;
       } else {
-        hasil.style.color = "red";
-        hasil.innerText = "NISN tidak ditemukan.";
+        hasil.innerHTML = '<span style="color: red;">Data tidak ditemukan. Periksa kembali NISN Anda.</span>';
       }
     }
   </script>
