@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pengumuman Kelulusan 2025/2026 - SMAN 52 Jakarta</title>
-
   <style>
     * {
       margin: 0;
@@ -25,7 +24,7 @@
     .container {
       background: #ffffff;
       width: 100%;
-      max-width: 520px;
+      max-width: 560px;
       padding: 40px;
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
@@ -47,22 +46,17 @@
       font-size: 16px;
       color: #666;
       font-weight: normal;
-      margin-bottom: 30px;
       line-height: 1.6;
+      margin-bottom: 28px;
     }
 
     input {
       width: 100%;
       padding: 14px;
-      border: 1px solid #dcdcdc;
+      border: 1px solid #ddd;
       border-radius: 10px;
       font-size: 16px;
-      margin-bottom: 15px;
-      outline: none;
-    }
-
-    input:focus {
-      border-color: #1e3a5f;
+      margin-bottom: 14px;
     }
 
     button {
@@ -70,7 +64,7 @@
       padding: 14px;
       border: none;
       background: #1e3a5f;
-      color: white;
+      color: #fff;
       font-size: 16px;
       border-radius: 10px;
       cursor: pointer;
@@ -81,102 +75,341 @@
     }
 
     #hasil {
-      margin-top: 25px;
+      margin-top: 22px;
       padding: 20px;
       border-radius: 12px;
       display: none;
-      font-size: 16px;
       line-height: 1.8;
+      text-align: left;
     }
 
     .lulus {
       background: #e8f7ed;
-      color: #146c2e;
       border: 1px solid #b7e4c7;
+      color: #146c2e;
     }
 
-    .tidak-ditemukan {
+    .tidak {
       background: #fff4e5;
-      color: #8a5a00;
       border: 1px solid #ffd8a8;
+      color: #8a5a00;
     }
 
     footer {
-      margin-top: 30px;
+      margin-top: 28px;
       font-size: 13px;
       color: #888;
+    }
+
+    .muted {
+      color: #666;
+      font-size: 14px;
+      margin-top: 8px;
     }
   </style>
 </head>
 <body>
-
 <div class="container">
-
-  <!-- Simpan logo sekolah dengan nama: logo.jpg -->
-  <img src="logo.jpg" alt="Logo SMAN 52 Jakarta" class="logo">
-
+  <img src="logo.jpg" alt="Logo SMAN 52 Jakarta" class="logo" />
   <h1>Pengumuman Kelulusan</h1>
-  <h2>
-    Peserta Didik Kelas XII<br>
-    SMAN 52 Jakarta<br>
-    Tahun Pelajaran 2025/2026
-  </h2>
+  <h2>Peserta Didik Kelas XII<br>SMAN 52 Jakarta<br>Tahun Pelajaran 2025/2026</h2>
 
-  <input type="text" id="namaInput" placeholder="Masukkan Nama Lengkap">
+  <input type="text" id="namaInput" placeholder="Masukkan Nama Lengkap" />
   <button onclick="cekKelulusan()">Cek Kelulusan</button>
 
   <div id="hasil"></div>
 
-  <footer>
-    © 2026 SMAN 52 Jakarta
-  </footer>
-
+  <footer>© 2026 SMAN 52 Jakarta</footer>
 </div>
 
 <script>
-/*
-DATA SISWA
-Semua siswa pada file dinyatakan LULUS
-(Berikut saya masukkan berdasarkan file Excel yang Anda kirim)
-*/
-
 const dataKelulusan = {
-  "ADRIL FIAN JOVANKA": "LULUS",
-  "ALICIA JUSTINE HUTAHAEAN": "LULUS",
-  "ARIF SUTIYANTO": "LULUS",
-  "BRYAN OEGUST RISHAN": "LULUS",
-  "CALLISTA EDELINE WENUR": "LULUS",
-  "CHELSI ISABEL LIMBONG": "LULUS",
-  "DANIEL SENTO": "LULUS",
-  "DIAN RISMA NUR ANISA": "LULUS",
-  "EKO PUTRA PRATAMA": "LULUS",
-  "ELDINO JAFRU CORUA": "LULUS",
-  "HERWANTO": "LULUS",
-  "IKA JULIANA": "LULUS",
-  "IKHANA PRIMA RESWARA": "LULUS",
-  "KEANDRE FICO DANENDRA": "LULUS",
-  "KIRANA EKA FAUZIAH SIFA": "LULUS",
-  "LIDIA EVELINA": "LULUS",
-  "MUHAMMAD ABDIL HASYIM": "LULUS",
-  "MUHAMMAD ANANDA SATRIO": "LULUS",
-  "MUHAMMAD DANI RASSYA": "LULUS",
-  "MUHAMMAD FIRZA AKBAR": "LULUS",
-  "RAHMA ASROFINAH": "LULUS",
-  "RESKA AULIA RAHMAH": "LULUS",
-  "REVANY ANGGRAINI": "LULUS",
-  "REYSA UNTARI": "LULUS",
-  "RHEZA ADITYA PUTRA": "LULUS",
-  "RIANFI CAMELIA": "LULUS",
-  "SUCI ANIS SANIJAN": "LULUS",
-  "SYIFA AMINAH": "LULUS",
-  "THALIA RAMADHANI ALISJAHBANA": "LULUS",
-  "TIANA GINAR PRATIWI": "LULUS"
-
-  /*
-  LANJUTKAN seluruh nama siswa lainnya dari file Excel
-  dengan format yang sama:
-  "NAMA MURID": "LULUS",
-  */
+      "ADRIL FIAN JOVANKA": "LULUS",
+      "ALICIA JUSTINE HUTAHAEAN": "LULUS",
+      "ARIF SUTIYANTO": "LULUS",
+      "BRYAN OEGUST RISHAN": "LULUS",
+      "CALLISTA EDELINE WENUR": "LULUS",
+      "CHELSI ISABEL LIMBONG": "LULUS",
+      "DANIEL SENTO": "LULUS",
+      "DIAN RISMA NUR ANISA": "LULUS",
+      "EKO PUTRA PRATAMA": "LULUS",
+      "ELDINO JAFRU CORUA": "LULUS",
+      "HERWANTO": "LULUS",
+      "IKA JULIANA": "LULUS",
+      "IKHANA PRIMA RESWARA": "LULUS",
+      "KEANDRE FICO DANENDRA": "LULUS",
+      "KIRANA EKA FAUZIAH SIFA": "LULUS",
+      "LIDIA EVELINA": "LULUS",
+      "MUHAMMAD ABDIL HASYIM": "LULUS",
+      "MUHAMMAD ANANDA SATRIO": "LULUS",
+      "MUHAMMAD DANI RASSYA": "LULUS",
+      "MUHAMMAD FIRZA AKBAR": "LULUS",
+      "MUHAMMAD SAHRUL HIDAYAT": "LULUS",
+      "NABILLA ALZAHRAH RAISYAH": "LULUS",
+      "NATALIE KEZIA": "LULUS",
+      "NELSYAH DHEA ATIFFAH": "LULUS",
+      "NIKEISHA AINUN MAHYA": "LULUS",
+      "NIZAL RABBANI": "LULUS",
+      "PUTRI BINTARI INDRIANI": "LULUS",
+      "RADIA AULIA FITRAH": "LULUS",
+      "SHINKI NAYLA DJIBU": "LULUS",
+      "SURYA ADIYONO": "LULUS",
+      "TIARA ADINDA": "LULUS",
+      "TRIANA CITRA BERLIANTY": "LULUS",
+      "URAY LUQMAN AN-NASA'I": "LULUS",
+      "YAN VERDY JOHANES W": "LULUS",
+      "YOLANDA NOVI BERNADETHA SIMBOLON": "LULUS",
+      "ZIKRINA RAJNI DANICA": "LULUS",
+      ": ………………………………………": "LULUS",
+      "NAMA MURID": "LULUS",
+      "ADELINA BETSYANI": "LULUS",
+      "ADITYA RHAMA SANJAYA": "LULUS",
+      "AHMAD FADIL FAUZAN": "LULUS",
+      "ALYAA FEBRIYANTI": "LULUS",
+      "AMELIA PUTRI AZZAHRA": "LULUS",
+      "ARIES PRATAMA": "LULUS",
+      "AUDIVA BILQIS RIDWAN": "LULUS",
+      "DEVI ANANDA": "LULUS",
+      "DINDA KHAERUNISSA": "LULUS",
+      "ERINA JULIA IZZATI": "LULUS",
+      "FAHIRA PUTRI SALSABILAH": "LULUS",
+      "HAWA RIZKI": "LULUS",
+      "HENDRA SATRIA WIJAYA": "LULUS",
+      "HERLIANI": "LULUS",
+      "ISA GRATIA DAMANIK": "LULUS",
+      "KEISYA DWI CAESARIA": "LULUS",
+      "KRISTIN NATALIA SIHITE": "LULUS",
+      "MESYALIN": "LULUS",
+      "MUHAMMAD LEVI": "LULUS",
+      "NAHDA ALISSIYA PUTRI": "LULUS",
+      "NAWANG WULAN": "LULUS",
+      "RAISHA AZALEA DARMAWAN": "LULUS",
+      "RARA APRIYANINGSIH": "LULUS",
+      "RATU AYU APRILLIA PUTRI KARTIKA": "LULUS",
+      "RIZQA ALFIYAH JANUR": "LULUS",
+      "SALSABILA OCTA RAMADHANI": "LULUS",
+      "SOFIATUN FINANI": "LULUS",
+      "SYAKA SYAKILAH NAJLA": "LULUS",
+      "THAAHIRAH BRILLIANT": "LULUS",
+      "TIA ISLAMI PUTRI": "LULUS",
+      "TRISYA SAFITRI": "LULUS",
+      "TSABITA MOTYANCIKA": "LULUS",
+      "ULFAH AZHALIA": "LULUS",
+      "UMAR AHMAD ZAIDAN": "LULUS",
+      "WIDIA CAROLINE": "LULUS",
+      "ZAHWA RAMADHANI EDITIANA": "LULUS",
+      "ADAM IKHSAN ALGHIPAHRI": "LULUS",
+      "ADRIAN JULIANO": "LULUS",
+      "ALDO SANJAYA": "LULUS",
+      "ANDERSEN BENAYA MAU": "LULUS",
+      "ANDIKA JULIANO": "LULUS",
+      "ANISA PUTRI UNI PRATAMA": "LULUS",
+      "ANJLY BENGGANG": "LULUS",
+      "AYLA SHAULA SAPUTRA": "LULUS",
+      "CHRYSTIANT DEDY JUNIOR": "LULUS",
+      "DHAVI ARDIANSYAH": "LULUS",
+      "DIAS PURNAMA YASA": "LULUS",
+      "DWI ARINI DAMAYANTI": "LULUS",
+      "FADHIL SHALIH AR-RAJIH": "LULUS",
+      "FELIX KEITA CANDRA": "LULUS",
+      "GHEOFADLY SATYA ANGGARA": "LULUS",
+      "HAIFA HANIA": "LULUS",
+      "IMAM AZMI MUDZAKKI": "LULUS",
+      "LESTARI KIRANA PUTRI": "LULUS",
+      "MOHAMAD PANDU FAUZIBHAKTI": "LULUS",
+      "MUHAMAD FAHRI APRIANTO": "LULUS",
+      "MUHAMAD YUSUF MAULANA": "LULUS",
+      "MUHAMMAD AFRIJAL": "LULUS",
+      "MUHAMMAD FAREL NOVERIANSYAH": "LULUS",
+      "MUHAMMAD GIBRAL THARIQ": "LULUS",
+      "NAILAH PUTRI FARHATI": "LULUS",
+      "PANDU PENGGALIH PRIYONO": "LULUS",
+      "RAFHAEL NAUFAL SASIRO": "LULUS",
+      "RAJESH BRIAN JAYA PANGARIBUAN": "LULUS",
+      "RIZKY IRAWAN": "LULUS",
+      "ROMEO ALFIANSYAH": "LULUS",
+      "RUMSINAH": "LULUS",
+      "SELAWATI": "LULUS",
+      "SIGIT PRASTYO": "LULUS",
+      "STEVANO AKHADI WIRA SATRIAJI": "LULUS",
+      "ULYA AZIZAH DESPITA": "LULUS",
+      "ZAIN NUR GHOSSAN": "LULUS",
+      "ANANTA ADITYA NUGROHO": "LULUS",
+      "ANGGUN BEAUTY ALAM": "LULUS",
+      "DAPIN FIEROLAN HUTAPEA": "LULUS",
+      "FERI DINAH AGUSTIAWAN": "LULUS",
+      "FIKRY AULIA RACHMAN": "LULUS",
+      "FRISKA RATU AZZAHRA": "LULUS",
+      "HAFEEZA SAPUTRA": "LULUS",
+      "HAFFIPAH": "LULUS",
+      "KATHRYN ZEFANYA RADOT PINTARULI SIMAMORA": "LULUS",
+      "KHAERULNAAM": "LULUS",
+      "MOCH AFINUM": "LULUS",
+      "MUHAMAD ANDRE GUSRIAL": "LULUS",
+      "MUHAMAD JIBRAN AL FARIZI": "LULUS",
+      "MUHAMAD MAULANA MALIK IBRAHIM": "LULUS",
+      "MUHAMMAD AFGHAN HERFIANTO": "LULUS",
+      "MUHAMMAD AZRIEL ARRAPI": "LULUS",
+      "MUHAMMAD BIFAN'S RIZQULLAH": "LULUS",
+      "MUHAMMAD RIZKY FIRDAUS": "LULUS",
+      "NABILA RIA": "LULUS",
+      "NATALIA EVARIANTY": "LULUS",
+      "NAZELAH UMMAH": "LULUS",
+      "NELPYN AGNISARI HALAWA": "LULUS",
+      "RADJA GUSMAN": "LULUS",
+      "RAHMAH JAMILAH": "LULUS",
+      "RAIHAN SIMANJUNTAK": "LULUS",
+      "RENDI SETIAWAN": "LULUS",
+      "RISKA ADITYA": "LULUS",
+      "SAHADI SAPUTRA": "LULUS",
+      "TRI LESTARI": "LULUS",
+      "YANTI NUR BAETI": "LULUS",
+      "ZAHRA AULIA NISA": "LULUS",
+      "ZIDANE AL MUZACKY": "LULUS",
+      "ADINDA NOVI YANTI": "LULUS",
+      "AIDE ISDIYANTO": "LULUS",
+      "ALDO DWI VARIANSYAH": "LULUS",
+      "ANISANDRA PUTRI": "LULUS",
+      "AULIA RAMADHANI": "LULUS",
+      "AZZAHRA SALSYABILLA HARDIAN": "LULUS",
+      "CALISTA ALIFYA JAYALAKSANA": "LULUS",
+      "CAMELIA KAYYISAH PUTRI IBRAHIM": "LULUS",
+      "ELIKA GILDA RAMADHANI RAFITO": "LULUS",
+      "EULOGIUS FARRELL DHAWANATHA": "LULUS",
+      "FATHIATUR RIZKI": "LULUS",
+      "FATHIN NUR SABRINA": "LULUS",
+      "IFTI AMALIYA RAHMASARI": "LULUS",
+      "JANUAR ZUAN FAUZAN": "LULUS",
+      "JOCELYN FERDINA CALANDRA SIALLAGAN": "LULUS",
+      "KAILA INDIRA ROMANSUR": "LULUS",
+      "KARTIKA TRI LESTARI": "LULUS",
+      "KAYLA ADIRA PUTRI": "LULUS",
+      "KAYLA RAHSHEA FACHRAINNY PUTRI": "LULUS",
+      "KEISYA NAJWA ALI": "LULUS",
+      "KELITA GRACIELLA": "LULUS",
+      "KIRANA ANINDYA PUTRI": "LULUS",
+      "MAUDY TRIFASASY": "LULUS",
+      "MAURA CATTLEYA LOVINA": "LULUS",
+      "MUHAMMAD DZUBYAN HENDARDI": "LULUS",
+      "MUHAMMAD FARREL ADITYA KAMAL": "LULUS",
+      "MUHAMMAD ZIDAN ABDILAH": "LULUS",
+      "NAAILAH RAHMAH HABIBI": "LULUS",
+      "NADIVA PUTRI": "LULUS",
+      "NOVELIA INDRIANI PUTRI PANJAITAN": "LULUS",
+      "PERTIWI LISNA MAYANTI KHAIR": "LULUS",
+      "RAKHA WIDYADHANA": "LULUS",
+      "SULTAN": "LULUS",
+      "SYIFA FAUZIYAH": "LULUS",
+      "VALENT FABRIZIO HARTANTO": "LULUS",
+      "WULAN": "LULUS",
+      "AHMAD FIKRI RAMADHAN": "LULUS",
+      "AISYAH AULIA ARUAN": "LULUS",
+      "ANNISA ZAHRA PRASETYA": "LULUS",
+      "ARIEF IRWANSYAH": "LULUS",
+      "AZ , ZAHRA ARLESTA PALESTIN": "LULUS",
+      "BAHTIAR DWI ANANTA": "LULUS",
+      "BERLIANA CINTA HOTMAULI SINAGA": "LULUS",
+      "CALLISTA MIRANDA": "LULUS",
+      "DEWI MALA SHIFA": "LULUS",
+      "DHIKA ANANDA": "LULUS",
+      "DWI PUTRI HANDAYANI": "LULUS",
+      "GILANG RAMADHAN": "LULUS",
+      "INTAN FITRI ANANDA": "LULUS",
+      "JENNIFER CLAUDYA WIJAYA": "LULUS",
+      "JOHANES SURYA PARULIAN PANGARIBUAN": "LULUS",
+      "KASMARISAH": "LULUS",
+      "KENZIE BONARO PANJAITAN": "LULUS",
+      "LIDIAH HANIFA": "LULUS",
+      "MANDA": "LULUS",
+      "MUHAMMAD IRFANSYAH": "LULUS",
+      "MUHAMMAD IRWANSYAH": "LULUS",
+      "MUHAMMAD NOUPAL ZALFA": "LULUS",
+      "MUHAMMAD SYADDAD AZIS": "LULUS",
+      "NABIL ILHAM": "LULUS",
+      "NAILAH SAKHI QURATU'AINI": "LULUS",
+      "NAUFAL NURFIKRI AL FARISY": "LULUS",
+      "NAZWA NAYLA SABRINA": "LULUS",
+      "NISRINA SABILAH": "LULUS",
+      "NUZIA PUTRI RAHMADHANI": "LULUS",
+      "RENATA ENZELINA ITEM": "LULUS",
+      "RIJAL RAMADHAN": "LULUS",
+      "SALSABILA ELIANA PUTRI": "LULUS",
+      "SELLA": "LULUS",
+      "SILVIA MARTA": "LULUS",
+      "SOFATUL JANNA": "LULUS",
+      "SYIFA AULIA SALSABILA": "LULUS",
+      "ALFIAH TRYASTITI": "LULUS",
+      "ALKHARISKHI SURYA ALSYABANI": "LULUS",
+      "ASIFA KESIA SALIM": "LULUS",
+      "AWAN MAULID ABBAS": "LULUS",
+      "BINTANG MARETA": "LULUS",
+      "CINDY CLAUDIA SARUMAHA": "LULUS",
+      "CLARA FERDINDA SANTOSO": "LULUS",
+      "DEVA YULIANA": "LULUS",
+      "DHEFA DEFRANA ANANTAPUTERA HAYOE": "LULUS",
+      "DZAKWAN NAUFAL RAMADHAN": "LULUS",
+      "FATUR RACHMAN": "LULUS",
+      "FIKA RAHMAWATI": "LULUS",
+      "GADIS ADELLILA": "LULUS",
+      "IGNATIUS DERIF LUMENTA": "LULUS",
+      "INDI RAHAYUNINGSIH": "LULUS",
+      "KHOIRUNNISA": "LULUS",
+      "MELATI": "LULUS",
+      "MUHAMMAD ALIF FARHAN": "LULUS",
+      "MUHAMMAD JABAL NUR": "LULUS",
+      "NAYLA AZZAHRA": "LULUS",
+      "NESDIA SAHERA JUNAEDI": "LULUS",
+      "NEZA ZULIANDA": "LULUS",
+      "NINDIA THIRSA ALFIANI": "LULUS",
+      "RAFII IBNU SHOLEH": "LULUS",
+      "RIFQI FATUR RAHMAN": "LULUS",
+      "ROY SIHOL PANGIHUTAN SIMAMORA": "LULUS",
+      "SITI PATIMAH RAMADHANI": "LULUS",
+      "SUKEYNA NUR HASANAH": "LULUS",
+      "SYIFA NURSYAMI": "LULUS",
+      "TANTI NUR MUIZZAH": "LULUS",
+      "TIARA LESTARI": "LULUS",
+      "TIFFANY GOZALI": "LULUS",
+      "VALENTINUS CHRISTANTO LIMANUEL": "LULUS",
+      "VICKY ARDIANSYAH": "LULUS",
+      "WANA PUTRI AGUSTIN": "LULUS",
+      "ZALIKA LAELA SYA'BANI": "LULUS",
+      "AHMAD MURDANI": "LULUS",
+      "ALMAS SALSABILA UMAGAPI": "LULUS",
+      "ANDIKA AL AFWAN": "LULUS",
+      "ANGGA GUSTI SAPUTRA": "LULUS",
+      "ANZELINA SAGITA NEGARA": "LULUS",
+      "AR RAHMAH KHALISHA KUSWORO": "LULUS",
+      "BEATRIX ANNA SIHOTANG": "LULUS",
+      "DILLA ZAFIRA": "LULUS",
+      "FARAH SALSABILAH": "LULUS",
+      "FAREL RADITYA CAHYADI": "LULUS",
+      "FELIVIA ZAHWA ARVIANI": "LULUS",
+      "GIBRAL PRASETIYO": "LULUS",
+      "HANA GRACIA SILABAN": "LULUS",
+      "HERLIANA": "LULUS",
+      "JAHRA PUTRI SUHENDAR": "LULUS",
+      "JOSHUA BASTIAN FORTUNIUS": "LULUS",
+      "KHALILA CAHAYA RAMADHANTI": "LULUS",
+      "MUHAMMAD AFFAN BUDIARTO": "LULUS",
+      "MUHAMMAD ALFAN AFRIZAL": "LULUS",
+      "MUHAMMAD PRAYOGA BIMANTHARA": "LULUS",
+      "MUHAMMAD RAYHAN ABDULAZIS": "LULUS",
+      "MUHAMMAD RIZKI SAPUTRA": "LULUS",
+      "MUHAMMAD ZIDANE NAUFAL EL ARKAN": "LULUS",
+      "NASYWA FAIS ALKHALIFI": "LULUS",
+      "NIZMA NAILA PUTRI": "LULUS",
+      "RAHMA ARIF KHODIJAH": "LULUS",
+      "RAHMA ASROFINAH": "LULUS",
+      "RESKA AULIA RAHMAH": "LULUS",
+      "REVANY ANGGRAINI": "LULUS",
+      "REYSA UNTARI": "LULUS",
+      "RHEZA ADITYA PUTRA": "LULUS",
+      "RIANFI CAMELIA": "LULUS",
+      "SUCI ANIS SANIJAN": "LULUS",
+      "SYIFA AMINAH": "LULUS",
+      "THALIA RAMADHANI ALISJAHBANA": "LULUS",
+      "TIANA GINAR PRATIWI": "LULUS"
 };
 
 function cekKelulusan() {
@@ -196,7 +429,7 @@ function cekKelulusan() {
     `;
   } else {
     hasil.style.display = "block";
-    hasil.className = "tidak-ditemukan";
+    hasil.className = "tidak";
     hasil.innerHTML = `
       Data tidak ditemukan.<br>
       Silakan periksa kembali nama yang dimasukkan.
@@ -204,6 +437,5 @@ function cekKelulusan() {
   }
 }
 </script>
-
 </body>
 </html>
